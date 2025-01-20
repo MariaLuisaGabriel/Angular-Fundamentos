@@ -1,0 +1,4 @@
+<h2>INTERAÇÃO ENTRE COMPONENTES</h2>
+<h3>sobrenome no pai: {{sobrenome}}</h3>
+<h3>nome todo: {{filho.nome}} {{sobrenome}}</h3>
+<app-componente-filho [sobrenome] = "sobrenome" (mostranome) = "mostranomecompleto($event)" #filho></app-componente-filho>
