@@ -3,11 +3,33 @@ import { PrimeiraPaginaComponent } from './primeira-pagina/primeira-pagina.compo
 import { SegundaPaginaComponent } from './segunda-pagina/segunda-pagina.component';
 import { PagNaoEncontradaComponent } from './pag-nao-encontrada/pag-nao-encontrada.component';
 import { PagcparametrosComponent } from './pagcparametros/pagcparametros.component';
+import { authGuard } from './auth.guard';
 
-export const routes: Routes = [
-    {path: "primeira-pagina", component: PrimeiraPaginaComponent},
-    {path: "segunda-pagina", component: SegundaPaginaComponent},
-    {path: "", redirectTo: "primeira-pagina", pathMatch: "full"}, 
+export const routes: Routes = [ 
+    //no angular 19, é o loadComponent que dita quais arquivos são carregados quando as páginas
+    // são redirecionadas
+    {
+        path: "primeira-pagina",
+        loadComponent: () => import('../app/primeira-pagina/primeira-pagina.component')
+            .then(m => m.PrimeiraPaginaComponent)
+    },
+    {
+        path: "segunda-pagina",
+        loadComponent: () => import('../app/segunda-pagina/segunda-pagina.component')
+            .then(m => m.SegundaPaginaComponent)
+    },
+    {
+        path: "pagina-protegida",
+        loadComponent: () => import('../app/pagina-protegida/pagina-protegida.component')
+            .then(m => m.PaginaProtegidaComponent),
+        canActivate: [authGuard]//proteção da página
+    },
+    {
+        path: "login",
+        loadComponent: () => import('../app/login/login.component')
+            .then(m => m.LoginComponent)
+    },
+    {path: "", redirectTo: "login", pathMatch: "full"}, 
     //^^^^ já abre a página principal redirecionada para a primeira página!
     {path: "pagcparametros/:id", component: PagcparametrosComponent},
     // /:id quer dizer que a variável id receberá o valor de um parâmetro
