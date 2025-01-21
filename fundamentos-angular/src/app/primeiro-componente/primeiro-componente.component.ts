@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   //styles: [' h2 { color: red; }']
 })
 export class PrimeiroComponenteComponent {
-  urlimagem = '/assets/images/1.jpg';
+  urlimagem = '1.jpg';
 }
