@@ -10,10 +10,11 @@ import { Servico1Component } from "./servico1/servico1.component";
 import { Servico2Component } from "./servico2/servico2.component";
 import { CicloDeVidaComponent } from "./ciclo-de-vida/ciclo-de-vida.component";
 import { CicloDeVidaPaiComponent } from "./ciclo-de-vida-pai/ciclo-de-vida-pai.component";
+import { CardComponent } from './card/card.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, PrimeiroComponenteComponent, SegundoComponenteComponent, TwoWayBindingComponent, RenderizandoListasComponent, ComponentePersonalizadoComponent, ComponentePaiComponent, Servico1Component, Servico2Component, CicloDeVidaPaiComponent],
+  imports: [FormsModule, PrimeiroComponenteComponent, SegundoComponenteComponent, TwoWayBindingComponent, RenderizandoListasComponent, ComponentePersonalizadoComponent, ComponentePaiComponent, Servico1Component, Servico2Component, CicloDeVidaPaiComponent,CardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
