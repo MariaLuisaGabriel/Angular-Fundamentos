@@ -9,6 +9,10 @@ export const routes: Routes = [
         path: "carrinho", loadChildren: () => import('../app/carrinho/carrinho.module')
             .then(m => m.CarrinhoModule)
     },
+    {//nested lazy-loading
+        path: "contato", loadChildren: () => import('../app/contato/contato.module')
+            .then(m => m.ContatoModule)
+    },
     {
         path: "", redirectTo:"produtos", pathMatch:"full"
     },

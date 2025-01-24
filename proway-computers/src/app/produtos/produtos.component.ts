@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { IProduto, produtos } from './produtos';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -11,6 +11,27 @@ import { RouterModule } from '@angular/router';
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.css'
 })
-export class ProdutosComponent {
-  produtos: IProduto[] = produtos;
+export class ProdutosComponent implements OnInit{
+  produtos: IProduto[] | undefined;
+
+  constructor(
+    private route: ActivatedRoute 
+  ){}
+
+  ngOnInit(): void {
+    const prod = produtos;
+    this.route.queryParamMap.subscribe(params =>
+      {
+        const descricao = params.get("descricao")?.toLowerCase();
+        
+        if(descricao){
+          this.produtos = prod.filter(produto => produto.descricao.toLowerCase().includes(descricao));
+          console.log(produtos);
+          return;
+        }
+        
+        this.produtos = prod;
+      }
+    );
+  }
 }
