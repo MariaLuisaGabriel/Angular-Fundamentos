@@ -7,7 +7,10 @@ import { authGuard } from './auth.guard';
 
 export const routes: Routes = [ 
     //no angular 19, é o loadComponent que dita quais arquivos são carregados quando as páginas
-    // são redirecionadas
+    // são redirecionadas (lazy-loading!)
+    //loadChildren > loadComponent
+    //loadchildren: carrega uma rede de componentes
+    //loadcomponent: carrega um único componente
     {
         path: "primeira-pagina",
         loadComponent: () => import('../app/primeira-pagina/primeira-pagina.component')
